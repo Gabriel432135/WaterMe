@@ -58,6 +58,8 @@ import com.example.waterme.SEVEN_DAYS
 import com.example.waterme.THIRTY_DAYS
 import com.example.waterme.data.DataSource
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.waterme.FIVETEEN_SECONDS
+import com.example.waterme.THIRTY_SECONDS
 import java.util.concurrent.TimeUnit
 
 @Composable
@@ -77,7 +79,9 @@ fun WaterMeApp(waterViewModel: WaterViewModel = viewModel(factory = WaterViewMod
         ) {
             PlantListContent(
                 plants = waterViewModel.plants,
-                onScheduleReminder = { waterViewModel.scheduleReminder(it) }
+                onScheduleReminder = {reminder ->
+                    waterViewModel.scheduleReminder(reminder)
+                }
             )
         }
     }
@@ -153,6 +157,9 @@ fun ReminderDialogContent(
 ) {
     val reminders = listOf(
         Reminder(R.string.five_seconds, FIVE_SECONDS, TimeUnit.SECONDS, plantName),
+        Reminder(R.string.fifteen_seconds, FIVETEEN_SECONDS, TimeUnit.SECONDS, plantName),
+        Reminder(R.string.thirty_seconds, THIRTY_SECONDS, TimeUnit.SECONDS, plantName),
+
         Reminder(R.string.one_day, ONE_DAY, TimeUnit.DAYS, plantName),
         Reminder(R.string.one_week, SEVEN_DAYS, TimeUnit.DAYS, plantName),
         Reminder(R.string.one_month, THIRTY_DAYS, TimeUnit.DAYS, plantName)
